@@ -1,0 +1,143 @@
+usamos unity
+////////////////////////////////////////////////////////////traer objetos de maya a unity////////////////////////////////////////////////////////////////////
+export selection
+fbx
+quitamos animation lights audio camera
+
+////////////////////////////////////////////////////////////trabajo en unity////////////////////////////////////////////////////////////////////////////////
+para empezar se debe crear un nuevo proyecto en el formato indicado y de la misma forma se debe escoger donde se guarda el proyecto
+
+--------------la interfaz
+veiteo de luces.- de esta forma lo que hacemos es generar de esta forma un renderizado para guardar las sombras, la iluminación y de esa forma no calcula cada milisegundo y que solo funcionen como si fuera un screen
+
+--------------escenas
+son los lugares en cual se efectuara el videojuego 
+para crear escenas nuevas vamois a las escenas click derecho crear y escena
+--------------------------CREAR OBJETOS PARA LA ESCENA
+vamos a la pestaña del menu Gameobject
+En el que están opciones para usar
+no se recomienda usar el video porque consume demasiado no se usa para juegos realmente a menos de que sea para realidad virtua
+los create emopty es como crear un objeto en maya vacio puedes usarlo para crear carpetas
+-------------------------------------------consejos objetos
+-la diferencia de un quad y un plano es que el plano tiene muchos segmentos y el quad es una pared lisa
+-para mover un objeto entre las verticeslo que se hace es mantener v seleccionar desde que vertice mover y moverlo
+
+---------------------------texturas 
+para esto podemos traer una imagen de internet para usarla, lo ponemos en photoshop después la exportamos en png para que no pese tanto, y lo arrastramos a texturas para tenerlo listo, después vamos a materiales creamos un material y arrastramos la textura que creamos a la opción de albedo
+
+
+---------------------------renderizado--------------------------------------------------------------------------------------------------------
+vamos a la pestaña de windows>render>ligth y con eso se nos abrirá una nueva ventana en esa nueva ventana, la arrastramos junto a inspector, creamos un nuevo render en la carpeta de renders, en lightmapper ponemos gpu, damos ambient occlusion un check,  y generamos luz
+
+se puede comproimir mas la imagen en donde esta "baked lightmaps" están nuestros planos renderizados donde les bajamos la calidad mas
+-------------------------------------------carpetas de trabajo MINIMAS-----------------------------------------------------------------
+assets:
+--2D:()
+----TEXTURES()
+----UI ()
+--3D ()
+--ANIMATION ()
+--MATERIALS ()
+--RENDERS ()
+--SCENES ()
+--SCRIPTS ()
+--SOUNDS: ()
+----EFECTS ()
+----MUSIC ()
+
+------------------------------------------------consejos-----------------------------------------------------------------------
+-se debe tener un orden y control de las caspetas de assets
+- EN ARCHIVOS 3D SOLO ARCHIVOS FBX
+------------------------------------------------SACAR ELEMENTOS HACIA MAYA------------------------------------------------------------------------
+WINDOWS->PACKACHE MANAGE(nos pone las carpetas/pauqtes que quieres meter para exportar)
+si quieres en la pestaña úedes ver eb el registro de unity (en la practica podemos agregar la librería fbx exporter para popder exportar)
+para exportar click derecho sobre el objeto y export
+
+después en maya vamos eliminando las caras que no se ven para eso en la opción izquierda ponemos modeling, 
+esto en la pestaña de trabajo superior mesh
+triangulamos y quadrangulamos todos los objetos(seleccionas todo), en quadrangular destiqueas las dos opciones del medio
+
+-ahora tratamos de eliminar todas las caras que no se vean 
+la barra encima de la ventana de trabajoq podemos seleccionar ver solo un objeto selesccionado activando "isolate selec"
+
+para que no todos los objetos agrupados eliminen su cara se desagrupa con shift b, después los limpiamos
+finalmente lo exportamos de maya como fbx (con las mismas opciones de exportar a unity)
+eliminamos los objetos 
+lo volvemos a arrastra a la ventana de trabajo el nuevo archivo triangulamos quadrangulamos y ya se pueden eliminar caras
+---------------------------------------------------------pro bulder------------------------------------------------------------------------------------
+para instalar es  en windows package manager, intralas pro builder
+esta librería sirve para empaquetados, en la pestaña tool puedes abrir la pestaña de trabajo del probuilder
+
+---------------------------nos pasamos el bakery  para trabajarlo-----------------------
+creamos un nuevo objeto vacio lo vemos->ponemos add component-> ft lightmap storage->, asi usamos un nuevo sistema para los light , vamos a bakery-skylight, después volvemos a bakery y presionamos en utilities y 
+
+
+-------------------------------------------------------segundo parcial --------------------------------------------------------
+para volver el sistema en 2d lo podemos crear el archivo como si fuera 3d pero una vez entras puedes cambiar en la opción arriba a la derecha 2d
+creamos las carpetas de siempre pero aumentamos prefab que puede ser una carpetas para código inturas etc, 
+instancia es crear una copia con el mismo origen es decir clones, un prefab son eso, instancias
+hay un maestro y los demás esclavos solo cambian si cambiamos al maestro
+-------------------------------------------------------prefab---------------------------------------------------------------------
+en la carpeta una vez creas un objeto creado o importado solo lo arrastras desde la barra de escena a la carpeta de prefab y ya puedes eliminar el objeto y puedes arrastrarlo a la ecsena como un elemento importado, si quieres modificar cada uno de los que importes debes abrir el prefab (seleccionas el prefab y de la escena, y en las opciones de la derecha pones open), ahora si queires modificar solo uno omites lo anterior y solo lo cambias
+-para guardarte tus prefabs para poder trabajarlo en otras cosas debes darle click derecho exportar lo guardas lo que quieras guardar y ya puedes importarlo a diferentes treabajos
+------------------------------------------------------animarlo:::se recomienda animar en maya-------------------------------------
+
+para animarlo seleccionamos el archivo y el objeto especifico y seleccionarlo después presionamos ctrl+6 creamos la animación esto alargando la ventana que emergio, lo guardamos en animación y tendremos las líneas de tiempo
+la animación solo cuando presionamos en el objeto
+damos add property y veremos las características q si son posible animar
+en este software debes guardar la animación con la opción de agregar los keyfrtames
+si quieres ver curvas abajo a la izquierda están las opciones
+para ajustar la camara a la vista que gustes ctrl+shift+f
+------------------------------------------------------sprites----------------------------------------
+son personajes con su movimiento en 2d lo que hacemos es descargar un sprite, lo arrastreamos en la nueva carpeta que debes crear en 2d llamada sprite
+una vez lo tengas en sus opciones en texture type cámbialo a sprite
+también cambiar el sprite mode a multiple
+después para trabajarlo necesitamos el paquete de 2d sprite, eso se hace en windows->package manager->en la pestaña escogen unity registry-> y buscamos el 2d sprite
+nos aparecerá el editor se recomienda trabaqwelo sin color y asi ir recortando a ccada movimiento también te servirá como advertencia para saber si la imagen realmente es sin fondo
+ctrl + d para poder duplicar los cuadros
+una vez tienes los "fotogramas del movimiento" (se recomienta todos centrados) y después lo arrastramos el primer fotogramaa la pantalla de trabajo, después de eso lo arrastramos del menu de escena al menu de prefabs y finalmente generamos la animación y para el cambio de fotogramas se activa en el botón de grabar y agregamos el componente de sprites después lo guardamos y las animaciones funcionarian
+para ve el arbol de animación es en windows>animation>animator
+
+si quieres crear una nueva animación haces todo igual 
+pero se ejecutara en tu ventana solo si esta bien la jerarquía de animación que es como un arbol que indica que va primero después etc.
+para generar la coneccion entre las pestañas es click derecho en el nodo del que empieza la animacion y seleccionas hacia donde quieras que prosiga
+
+un truco para mejorar los sprites pixeleados es que en las opciones de pixeleado le quites elñ filtro
+
+para crear una interfaz hacemos click derecho en el menu de la escena ui>canvas
+de esa forma generaremos la ventana para interfaz, después de eso podemos seleccionar que se centre en la camra y la distancia hacia esta, finalmente dentro del canva podemos crear una imagen y ya ponerlo para la interfaz ESO EN LA OPCION ui de create, después también puedes agrevar el botón.
+
+el botón puedes importar texto, de la misma forma puedes generar cambio de tamaño y de lo que diga el botón, asi mismo puedes generar que el botón tenga un sprite de fondo y también un cambio de imagen
+------------------------------------personaje---------------------------------------------------------------------
+hemos importado un archivo con un pj que estamos usando como ejemplo para ver su movimiento y la interacción del mismo con el entorno que hayas creado, también vimos que tiene controles como de gracedad y otros, 
+
+----------------------agregar musica
+para agregar musica solo lo arrastramos en el formato mp3 a la carpeta de nustros assets para almacenarlo, después creamos un objeto vacio en la escena agregamos un componente a ese objeto un >>"Audio Source"<<, que genere el sonido ambiente, arrastramos el sonido y una vez le pongas play deberías verlo
+
+los sonidos creados tienen opciones que te permiten generar un loop y tener gerarquias tomar en cuenta que el personaje escuchara la cancion como si fuera de fondo sobre todo
+para hacer que tu menu tenga sonido haces lo mismo agrega el objeto añades el sonido(todo al canvas) y de esa forma generaras que el sonido se reproduzca en el menu
+--------------------------------añadir animación
+lo creas en maya y lo exportas como fbx y lo llevas a unity en el lo que haces es marcar las opciones de siempre de modelo
+
+materiales ningunmo
+rig.-genérico, crear el avatar desde el modelo, none, standart bones
+animation: en este espacio mestra nuestra animación ojo que no se moverá en unity por que solo la pusimos en el sistema no que se ejecute, para eso creamos un animation controler, y en el arbol de jerarquía arrastras tus animaciones y después las interconectas, para generar el loop es en el archivo que exportaste animation y le pones loop a tu animación
+----------------------------------------EFECTOS
+esta vez instalaremos el paquete post procesing y universal rp
+nos dará la posibilidad que en el plano de jerarquía de la escsena usar volume
+tienes que entender la diferencia entre una twextura y un material y shader
+textura un nodo de visualización
+material, como se comporta en su sistema
+shader realidad del sistema
+
+pasamos a ir a la carpeta de render ponemos crear vamos hasta abajo y en rendering buscamos Urp assets with universal ...
+después vamos a edit->project settings->graphics y arrastramos el primer cubito y finalmente continuar esto hara que todos los materiales que nos son universales se popngan rosa, por lo que toca ir a cada material a cambiarlos de standart a universal render pipe-lit 
+ESTO NO PASARA SI DESDE EL INICIO TRABAJAMOS CON UNIVERSAL RENDER PIPE
+
+AHORA EN LA JERARQUIA DE ESCENA EN VOLUME CREAMOS GLOBAL VOLUME
+en la carpeta de render y creamos volume profile en la camara que usaremos vamos a sus opcione sy creamos el componente volumen y arrastramos nuestro archivo de render después de eso vamos a la opción de camara y tickeamos post procesing fast aproximate antialiasing
+después en el global volume que creaste aparte en override después de haber arrastrado el rendering agregas los efectos, ya sea con vignett para que de como un efecto de daño 
+ahora hay otra forma de hacerlo que es generando en la gerarquia y agragamos volume->box volume y creeas espacios para que se active el efecto visual cuando alguien pase por ahi
+
+--------------------------------------------------particulas------------------
+creamos en la jerarquía de escenas-efectos->particle sistemas consta con demasiadas opciones pero las que mas te interesa es generar texturas en render y en la primeras barras de opciones los mov y velocidades 
